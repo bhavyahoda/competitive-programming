@@ -1,20 +1,20 @@
+//this program will generate all possible configurations of a string
 #include<iostream>
 using namespace std;
-void permute_karo_bc(char *in, int i)
+void permute(char *in, int i)
 {
 	if (in[i] == '\0')
 	{
-		cout << in << ',';
+		cout << in << ',';//base case
 		return;
 	}
 	for (int j = i; in[j] != '\0'; ++j)
 	{
 		swap(in[i], in[j]);
-		permute_karo_bc(in, i + 1);
-		swap(in[i], in[j]);//yeh step is backtracking
-		//means neeche jaate hue recursion tree bante vakat
-		//jo kaam kiya tha usko undo karte jao
-		//yeh hota hai backtracking
+		permute(in, i + 1);//recursive call
+		swap(in[i], in[j]);
+		//this step is backtracking
+		//that means while making recursion tree the things that we did need to be undone
 	}
 }
 int main()
@@ -27,5 +27,5 @@ int main()
 #endif
 	char a[100];
 	cin >> a;
-	permute_karo_bc(a, 0);
+	permute(a, 0);//calling the recursive function
 }
